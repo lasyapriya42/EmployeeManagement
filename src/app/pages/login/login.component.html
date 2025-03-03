@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="formContainer">
+        <div class="toggle">
+            <label>Login</label>
+        </div>
+
+        <div class="formSection">
+            <div class="formWrapper loginFormContainer">
+                <form action="#">
+                    <div class="formBody">
+                        <div class="inputGroup">
+                            <label for="login_email">Username</label>
+                            <input type="text" name="username" id="login_email" [(ngModel)]="loginObj.userName">
+
+                        </div>
+
+                        <div class="inputGroup">
+                            <label for="login_password">Password</label>
+                            <input type="password" name=" password" id="login_password" [(ngModel)]="loginObj.password">
+                        </div>
+                    </div>
+
+                    <div class="formFooter">
+                        <div class="formControls">
+                            <button type="submit" (click)="onLogin()">Login</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
