@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { MasterService } from '../../service/master.service';
 import { Employee, IAPIResponse, IChildDept, IParentDept } from '../../model/Employee';
 import { FormsModule } from '@angular/forms';
@@ -17,6 +17,7 @@ export class EmployeeComponent implements OnInit{
   deptId:number=0;
   employeeList:Employee[]=[];
   masterServ=inject(MasterService);
+  isSidePanelOpen=signal<boolean>(false);
   ngOnInit(): void {
     this.getParentDeptList();
     this.getEmployeeList();
@@ -88,5 +89,11 @@ export class EmployeeComponent implements OnInit{
       },error=>{
         alert("Something went wrong");
       })
+  }
+  addNew(){
+    this.isSidePanelOpen.set(true);
+  }
+  closeForm(){
+    this.isSidePanelOpen.set(false);
   }
 }
