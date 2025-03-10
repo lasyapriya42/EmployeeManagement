@@ -46,3 +46,14 @@ export interface IAPIResponse{
     data:any
 
 }
+export interface IProjectObj {
+    projectId: number
+    projectName: string
+    clientName: string
+    startDate: string
+    leadByEmpId: number
+    contactPerson: string
+    contactNo: string
+    emailId: string
+    employeeName: string
+  }
