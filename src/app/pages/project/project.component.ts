@@ -1,25 +1,28 @@
 import { AsyncPipe, CommonModule, DatePipe } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { Observable } from 'rxjs';
-import { Employee, IProjectObj } from '../../model/Employee';
+import { Employee, IProjectObj, projectEmployee } from '../../model/Employee';
 import { MasterService } from '../../service/master.service';
 
 
 
 @Component({
   selector: 'app-project',
-  imports: [CommonModule,ReactiveFormsModule,AsyncPipe,DatePipe],
+  imports: [CommonModule,ReactiveFormsModule,AsyncPipe,DatePipe,FormsModule],
   templateUrl: './project.component.html',
   styleUrl: './project.component.scss'
 })
 export class ProjectComponent implements OnInit {
+
   initialView :string="List";
   projectForm: FormGroup=new FormGroup({});
   masterServ=inject(MasterService);
   employeeData$: Observable<Employee[]> = new Observable<Employee[]>();
   projectList: IProjectObj[] = [];
+  @ViewChild("myModal") employeeModal: ElementRef | any;
+  projectEmployee: projectEmployee =new projectEmployee();
   constructor() { 
     this.initialization();
     this.employeeData$=this.masterServ.getEmployeeList();
@@ -123,5 +126,21 @@ export class ProjectComponent implements OnInit {
       alert("Error in deleting project");
     });
   }
+  onAddEmployee(id : number){
+    if(this.employeeModal){
+    this.employeeModal.nativeElement.style.display = "block";
+  }}
+  closeEmployee(){
+    this.employeeModal.nativeElement.style.display = "none";
+  }
+  // onAddEmp(id : number){
+  //   this.projectEmployee.projectId=id;
+  //   this.masterServ.addNewProjectEmp(this.projectEmployee).subscribe((res:projectEmployee)=>{
+  //     alert("Employee Added Successfully");
+  //     this.closeEmployee();
+  //   },(error)=>{
+  //     alert("Error in adding employee");
+  //   });
+  // }
   }
 

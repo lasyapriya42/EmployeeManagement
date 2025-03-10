@@ -37,6 +37,7 @@
                             <td>
                                 <button class="btn btn-primary" (click)="onEdit(project)">Edit</button>
                                 <button class="btn btn-danger" (click)="onDelete(project.projectId)">Delete</button>
+                                <!-- <button class="btn btn-success" (click)="onAddEmployee(project.projectId)">Employee</button> -->
                             </td>
                         </tr>
                     </tbody>
@@ -98,7 +99,7 @@
 
                         </div>
                     </div>
-                    @if(initialView == 'List'){
+                    @if(initialView == 'form'){
                     <button type="submit" class="btn btn-primary mt-3" >Submit</button>}
                     @else{
                     <button type="submit" class="btn btn-warning mt-3">Update</button>}
@@ -108,3 +109,77 @@
     </div>
     
 </div>
+<!-- <div class="modal" #myModal>
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+  
+        
+        <div class="modal-header">
+          <h4 class="modal-title">Project Employee</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="closeEmployee()"></button>
+        </div>
+  
+      
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-3">
+              <select name="" id="" class="form-select" [(ngModel)]="projectEmployee.empId">
+                <option value="0">Select Employee</option>
+                <option *ngFor="let emp of employeeData$| async " [value]="emp.employeeId">{{ emp.employeeName }}
+
+                </option>
+              </select>
+            </div>
+            <div class="col-3">
+              <input type="text" placeholder="Role" class="form-control" [(ngModel)]="projectEmployee.role">
+            </div>
+            <div class="col-3">
+              <input type="date" class="form-control" [(ngModel)]="projectEmployee.assignedDate">
+            </div>
+            <div class="col-3">
+              <input type="button" value="Add" class="btn btn-primary" (click)="onAddEmp(projectEmployee.projectId)">
+            </div>
+          </div>
+        </div>
+  
+   
+        <div class="row pt-3">
+          <div class="col-12">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Project ID</th>
+                  <th>Project Name</th>
+                  <th>Client Name</th>
+                  <th>Start Date</th>
+                  <th>Lead By Employee</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let project of projectList; let sr = index">
+                  <td>{{ sr + 1 }}</td>
+                  <td>{{ project.projectName }}</td>
+                  <td>{{ project.clientName }}</td>
+                  <td>{{ project.startDate | date: 'dd-MMM-yy' }}</td>
+                  <td>{{ project.employeeName }}</td>
+                  <td>
+                    <button class="btn btn-primary" (click)="onEdit(project)">Edit</button>
+                    <button class="btn btn-danger" (click)="onDelete(project.projectId)">Delete</button>
+                    <button class="btn btn-success" (click)="onAddEmployee(project.projectId)">Employee</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+  
+   
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="closeEmployee()">Close</button>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+   -->
